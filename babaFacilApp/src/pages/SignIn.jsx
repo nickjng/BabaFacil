@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Button } from 'react-native'
 
+import * as Animatable from 'react-native-animatable'
+
 import BtnC from '../components/CustomButton'
 
 
@@ -9,14 +11,15 @@ export default function SignIn() {
     return (
         <View style={styles.container}>
             <View style={styles.containerLogo}>
-                <Image
+                <Animatable.Image
+                    animation='flipInY'
                     source={require('../assets/imgs/logoFull.png')}
-                    style={{ width: '70%', padding: 15 }}
+                    style={{ width: '80%', padding: 15 }}
                     resizeMode='contain'
                 />
             </View>
 
-            <View style={styles.inputContainer}>
+            <Animatable.View delay={600} animation='fadeInUp' style={styles.inputContainer} >
                 <BtnC 
                     buttonText="Acessar"
                     btnColor='#247BBA' 
@@ -30,8 +33,8 @@ export default function SignIn() {
                     colorText='#9B9B9B' 
                     onPress={() =>{alert('clicou em Cadastrar')}}
                 />
-                
-            </View>
+
+            </Animatable.View>
 
 
         </View>
