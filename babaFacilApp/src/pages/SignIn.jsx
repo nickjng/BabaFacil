@@ -43,14 +43,21 @@ export default function SignIn() {
                         buttonText="Acessar"
                         btnColor='#94B9FF'
                         colorText='#FFF'
-                        onPress={() => { modalLoginRef.current?.open(); }}
+                        onPress={(event) => { 
+                            event.persist();
+                            modalLoginRef.current?.open();
+                        }}
                     />
 
                     <BtnC
                         buttonText='Cadastrar'
                         btnColor='#EBEBEB'
                         colorText='#9B9B9B'
-                        onPress={() => { modalRegisterRef.current?.open(); }}
+                        onPress={(event) => { 
+                            event.persist();
+                            modalRegisterRef.current?.open();
+                        }}
+                        // onPress={() => { modalRegisterRef.current?.open(); }}
                     />
 
                 </Animatable.View>
@@ -66,8 +73,7 @@ export default function SignIn() {
                             placeholder='Email'
                         />
                         <TextInput 
-                            textContentType='password'
-                            // keyboardType='visible-password'
+                            secureTextEntry
                             style={styles.inputStyle}
                             placeholder='Senha'
                         />
@@ -90,7 +96,7 @@ export default function SignIn() {
                             placeholder='Email'
                         />
                         <TextInput 
-                            textContentType='password'
+                            secureTextEntry
                             // keyboardType='visible-password'
                             style={styles.inputStyle}
                             placeholder='Senha'
@@ -100,7 +106,10 @@ export default function SignIn() {
                         buttonText='Acessar'
                         btnColor='#94B9FF'
                         colorText='#fff'
-                        onPress={() => { alert('next') }}
+                        onPress={(event) => { 
+                            event.persist();
+                            alert('next');
+                        }}
                     />
                 </Modalize>
 
