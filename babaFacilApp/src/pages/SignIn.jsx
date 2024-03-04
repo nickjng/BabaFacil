@@ -1,7 +1,8 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Button } from 'react-native'
+import React, { useRef } from 'react'
+import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
 import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-sans'
-
+import { Modalize } from 'react-native-modalize';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable'
 
 import BtnC from '../components/CustomButton'
@@ -9,6 +10,10 @@ import BtnC from '../components/CustomButton'
 
 
 export default function SignIn() {
+
+    const modalLoginRef = useRef(null)
+    const modalRegisterRef = useRef(null)
+
 
     let [fontsLoaded] = useFonts({
         OpenSans_400Regular,
@@ -20,37 +25,88 @@ export default function SignIn() {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.containerLogo}>
-                <Animatable.View animation='slideInDown' delay={600} style={styles.logoContent}>
-                    <Image
-                        source={require('../assets/imgs/logo.png')}
-                        style={{ width: '40%', padding: 15 }}
-                        resizeMode='contain'
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <View style={styles.containerLogo}>
+                    <Animatable.View animation='slideInDown' delay={600} style={styles.logoContent}>
+                        <Image
+                            source={require('../assets/imgs/logo.png')}
+                            style={{ width: '40%', padding: 15 }}
+                            resizeMode='contain'
+                        />
+                        <Text style={styles.logoText}>BabáFacíl</Text>
+                    </Animatable.View>
+                </View>
+
+                <Animatable.View delay={600} animation='fadeInUp' style={styles.bottonContainer} >
+                    <BtnC
+                        buttonText="Acessar"
+                        btnColor='#94B9FF'
+                        colorText='#FFF'
+                        onPress={() => { modalLoginRef.current?.open(); }}
                     />
-                    <Text style={styles.logoText}>BabáFacíl</Text>
+
+                    <BtnC
+                        buttonText='Cadastrar'
+                        btnColor='#EBEBEB'
+                        colorText='#9B9B9B'
+                        onPress={() => { modalRegisterRef.current?.open(); }}
+                    />
+
                 </Animatable.View>
+
+                {/* modals */}
+                <Modalize ref={modalLoginRef} snapPoint={500} modalHeight={600}>
+                    <Text style={styles.titleModal}>
+                         Login
+                    </Text>
+                    <View style={styles.modalContent}>
+                        <TextInput 
+                            style={styles.inputStyle}
+                            placeholder='Email'
+                        />
+                        <TextInput 
+                            textContentType='password'
+                            // keyboardType='visible-password'
+                            style={styles.inputStyle}
+                            placeholder='Senha'
+                        />
+                    </View>
+                    <BtnC
+                        buttonText='Acessar'
+                        btnColor='#94B9FF'
+                        colorText='#fff'
+                        onPress={() => { alert('next') }}
+                    />
+                </Modalize>
+
+                <Modalize ref={modalRegisterRef} snapPoint={500} modalHeight={600}>
+                    <Text style={styles.titleModal}>
+                         Cadastro
+                    </Text>
+                    <View style={styles.modalContent}>
+                        <TextInput 
+                            style={styles.inputStyle}
+                            placeholder='Email'
+                        />
+                        <TextInput 
+                            textContentType='password'
+                            // keyboardType='visible-password'
+                            style={styles.inputStyle}
+                            placeholder='Senha'
+                        />
+                    </View>
+                    <BtnC
+                        buttonText='Acessar'
+                        btnColor='#94B9FF'
+                        colorText='#fff'
+                        onPress={() => { alert('next') }}
+                    />
+                </Modalize>
+
+
             </View>
-
-            <Animatable.View delay={600} animation='fadeInUp' style={styles.inputContainer} >
-                <BtnC 
-                    buttonText="Acessar"
-                    btnColor='#94B9FF' 
-                    colorText='#FFF' 
-                    onPress={() => {alert ('Clicou em Acessar')}} 
-                />
-
-                <BtnC 
-                    buttonText='Cadastrar' 
-                    btnColor='#EBEBEB' 
-                    colorText='#9B9B9B' 
-                    onPress={() =>{alert('clicou em Cadastrar')}}
-                />
-
-            </Animatable.View>
-
-
-        </View>
+        </GestureHandlerRootView>
     )
 }
 
@@ -59,7 +115,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff'
     },
-    containerLogo:{
+    containerLogo: {
         justifyContent: 'center',
         marginStart: '7%',
         marginBottom: '70%',
@@ -76,8 +132,32 @@ const styles = StyleSheet.create({
         color: '#878787',
         // fontWeight: 'bold',
     },
-    inputContainer: {
+    bottonContainer: {
         flex: 1,
-    }
+    },
+    modalContent: {
+        flex: 1,
+        height: 180,
+        // flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    inputStyle:{
+        width: '90%',
+        borderWidth: 2,
+        borderRadius: 15,
+        borderColor: '#247BBA',
+        padding: 15,
+        margin: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      titleModal:{
+        textAlign: 'center',
+        margin: 25,
+        fontFamily: 'OpenSans_400Regular',
+        fontSize: 25,
+        color: '#94B9FF',
+      }
 
 })
