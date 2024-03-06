@@ -4,13 +4,14 @@ import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fo
 import { Modalize } from 'react-native-modalize';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable'
-
+import { useNavigation } from '@react-navigation/native';
 import BtnC from '../components/CustomButton'
 
 
 
 export default function SignIn() {
-
+    
+    const navigation = useNavigation();
     const modalLoginRef = useRef(null)
     const modalRegisterRef = useRef(null)
 
@@ -43,7 +44,7 @@ export default function SignIn() {
                         buttonText="Acessar"
                         btnColor='#94B9FF'
                         colorText='#FFF'
-                        onPress={(event) => { 
+                        onPress={(event) => {
                             event.persist();
                             modalLoginRef.current?.open();
                         }}
@@ -53,26 +54,26 @@ export default function SignIn() {
                         buttonText='Cadastrar'
                         btnColor='#EBEBEB'
                         colorText='#9B9B9B'
-                        onPress={(event) => { 
+                        onPress={(event) => {
                             event.persist();
                             modalRegisterRef.current?.open();
                         }}
-                        // onPress={() => { modalRegisterRef.current?.open(); }}
+                    // onPress={() => { modalRegisterRef.current?.open(); }}
                     />
 
                 </Animatable.View>
 
                 {/* modals */}
-                <Modalize ref={modalLoginRef} snapPoint={500} modalHeight={600}>
+                <Modalize ref={modalLoginRef} snapPoint={600} modalHeight={600}>
                     <Text style={styles.titleModal}>
-                         Login
+                        Login
                     </Text>
                     <View style={styles.modalContent}>
-                        <TextInput 
+                        <TextInput
                             style={styles.inputStyle}
                             placeholder='Email'
                         />
-                        <TextInput 
+                        <TextInput
                             secureTextEntry
                             style={styles.inputStyle}
                             placeholder='Senha'
@@ -82,33 +83,34 @@ export default function SignIn() {
                         buttonText='Acessar'
                         btnColor='#94B9FF'
                         colorText='#fff'
-                        onPress={() => { alert('next') }}
+                        onPress={(event) => {
+                            event.persist();
+                            alert('acessar')
+                        }}
                     />
                 </Modalize>
 
-                <Modalize ref={modalRegisterRef} snapPoint={500} modalHeight={600}>
+                <Modalize ref={modalRegisterRef} snapPoint={300} modalHeight={300}>
                     <Text style={styles.titleModal}>
-                         Cadastro
+                        Cadastro
                     </Text>
-                    <View style={styles.modalContent}>
-                        <TextInput 
-                            style={styles.inputStyle}
-                            placeholder='Email'
-                        />
-                        <TextInput 
-                            secureTextEntry
-                            // keyboardType='visible-password'
-                            style={styles.inputStyle}
-                            placeholder='Senha'
-                        />
-                    </View>
+
                     <BtnC
-                        buttonText='Acessar'
+                        buttonText='Pai/Responsável'
                         btnColor='#94B9FF'
                         colorText='#fff'
-                        onPress={(event) => { 
+                        onPress={(event) => {
                             event.persist();
-                            alert('next');
+                            navigation.navigate('AccountCreation')
+                        }}
+                    />
+                    <BtnC
+                        buttonText='Babá'
+                        btnColor='#FBCAFF'
+                        colorText='#fff'
+                        onPress={(event) => {
+                            event.persist();
+                            navigation.navigate('AccountCreation')
                         }}
                     />
                 </Modalize>
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    inputStyle:{
+    inputStyle: {
         width: '90%',
         borderWidth: 2,
         borderRadius: 15,
@@ -160,13 +162,13 @@ const styles = StyleSheet.create({
         margin: 20,
         alignItems: 'center',
         justifyContent: 'center'
-      },
-      titleModal:{
+    },
+    titleModal: {
         textAlign: 'center',
         margin: 25,
         fontFamily: 'OpenSans_400Regular',
         fontSize: 25,
         color: '#94B9FF',
-      }
+    }
 
 })
