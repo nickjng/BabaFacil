@@ -20,7 +20,7 @@ export default function Routes() {
                 options={{headerShown: false}}
             />
             <Stack.Screen
-                name='AccountCreation'
+                name="AccountCreation"
                 component={AccountCreation}
                 options={{headerShown: false}}
             />

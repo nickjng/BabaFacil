@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 
-const CustomButton = ({ onPress, btnColor,colorText,buttonText }) => {
+const CustomButton = ({ onPress, btnColor,colorText,buttonText, additionalStyles }) => {
 
     
 const styles = StyleSheet.create({
@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 15,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        ...additionalStyles
     },
     buttonText: {
         fontSize: 18,
