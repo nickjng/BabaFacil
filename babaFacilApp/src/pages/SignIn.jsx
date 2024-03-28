@@ -85,7 +85,7 @@ export default function SignIn() {
                         colorText='#fff'
                         onPress={(event) => {
                             event.persist();
-                            alert('acessar')
+                            navigation.navigate('Home')
                         }}
                     />
                 </Modalize>

@@ -36,7 +36,7 @@ export default function AccountCreation() {
           buttonText='Cadastrar'
           btnColor='#94B9FF'
           colorText='#FFF'
-          onPress={() => { alert('cadastrado') }}
+          onPress={() => { navigation.navigate('Home') }}
         // onPress={() => { modalRegisterRef.current?.open(); }}
         />
       </View>

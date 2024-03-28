@@ -15,7 +15,7 @@ export default function Routes() {
                 component={Welcome}
                 options={{headerShown: false}}
             /> */}
-            {/* <Stack.Screen
+            <Stack.Screen
                 name="SignIn"
                 component={SignIn}
                 options={{headerShown: false}}
@@ -24,7 +24,7 @@ export default function Routes() {
                 name="AccountCreation"
                 component={AccountCreation}
                 options={{headerShown: false}}
-            /> */}
+            />
             <Stack.Screen
                 name='Home'
                 component={Home}
